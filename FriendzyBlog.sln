@@ -11,6 +11,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FriendzyBlog.Data", "src\Fr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FriendzyBlog.WebApp", "src\FriendzyBlog.WebApp\FriendzyBlog.WebApp.csproj", "{8B953AAA-CA95-4DED-A9FF-DF20DFD60205}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuonroiBuildingBlock", "..\..\PersonalProject\MuonroiBuildingBlock\MuonroiBuildingBlock.csproj", "{683A5782-D0A0-4ABD-980C-8E309287A460}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "resources", "resources", "{E7DA7C5A-B97D-40AF-ACAB-6A705F6D14B0}"
+	ProjectSection(SolutionItems) = preProject
+		.env = .env
+		.gitignore = .gitignore
+		docker-compose.yml = docker-compose.yml
+		kibana.yml = kibana.yml
+		setup.yml = setup.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +44,10 @@ Global
 		{8B953AAA-CA95-4DED-A9FF-DF20DFD60205}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B953AAA-CA95-4DED-A9FF-DF20DFD60205}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B953AAA-CA95-4DED-A9FF-DF20DFD60205}.Release|Any CPU.Build.0 = Release|Any CPU
+		{683A5782-D0A0-4ABD-980C-8E309287A460}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{683A5782-D0A0-4ABD-980C-8E309287A460}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{683A5782-D0A0-4ABD-980C-8E309287A460}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{683A5782-D0A0-4ABD-980C-8E309287A460}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

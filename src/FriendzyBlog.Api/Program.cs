@@ -1,62 +1,55 @@
-using FriendzyBlog.Api;
-using FriendzyBlog.Core.Domain.Identity;
-using FriendzyBlog.Data;
-
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .CreateBootstrapLogger();
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
-ConfigurationManager configuration = builder.Configuration;
-string? connectionString = configuration.GetConnectionString("DefaultConnection");
-// Add services to the container.
-
-//Config DB Context and ASP.NET Core Identity
-builder.Services.AddDbContext<FriendzyBlogContext>(options =>
-                options.UseSqlServer(connectionString));
-
-builder.Services.AddIdentity<AppUser, AppRole>(options => options.SignIn.RequireConfirmedAccount = false)
-    .AddEntityFrameworkStores<FriendzyBlogContext>();
-
-builder.Services.Configure<IdentityOptions>(options =>
 {
-    // Password settings.
-    options.Password.RequireDigit = true;
-    options.Password.RequireLowercase = true;
-    options.Password.RequireNonAlphanumeric = true;
-    options.Password.RequireUppercase = true;
-    options.Password.RequiredLength = 6;
-    options.Password.RequiredUniqueChars = 1;
-
-    // Lockout settings.
-    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-    options.Lockout.MaxFailedAccessAttempts = 5;
-    options.Lockout.AllowedForNewUsers = true;
-
-    // User settings.
-    options.User.AllowedUserNameCharacters =
-    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-    options.User.RequireUniqueEmail = false;
-});
-
-//Default config for ASP.NET Core
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-WebApplication app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    _ = app.UseSwagger();
-    _ = app.UseSwaggerUI();
+    builder.AddAppConfigurations();
 }
+builder.Host.UseSerilog(SerilogAction.Configure);
+Log.Information($"Starting {builder.Environment.ApplicationName} API up");
+try
+{
+    IConfiguration configuration = builder.Configuration;
+    Assembly assembly = Assembly.GetExecutingAssembly();
+    IServiceCollection services = builder.Services;
+    {
+        _ = services.AddApplication(assembly);
+        _ = services.AddInfrastructure(configuration);
+        _ = services.AddDbContextConfigure<FriendzyBlogContext>(configuration);
+        _ = services.AddAutofacConfigure(configuration);
+        _ = services.AddScoped<DefaultLanguagesCreator>();
+        _ = services.AddScoped<HostRoleAndUserCreator>();
+        _ = services.AddScoped<InitialHostDbBuilder>();
+    }
 
-app.UseHttpsRedirection();
+    WebApplication app = builder.Build();
+    {
+        _ = app.UseMiddleware<AuthContextMiddleware>();
+        _ = app.AddLocalization();
+        _ = app.UseRouting();
+        _ = app.UseAuthentication();
+        _ = app.UseAuthorization();
+        _ = app.UseMiddleware<GlobalExceptionMiddleware>();
+        _ = app.ConfigureEndpoints();
+        _ = app.MigrateDatabase();
 
-app.UseAuthorization();
+        app.Run();
+        await app.RunAsync();
+    }
+}
+catch (Exception ex)
+{
+    string type = ex.GetType().Name;
 
-app.MapControllers();
+    if (type.Equals("StopTheHostException", StringComparison.Ordinal))
+    {
+        throw;
+    }
 
-//Seeding data
-app.MigrateDatabase();
-
-app.Run();
+    Log.Fatal(ex, $"Unhandled exception: {ex.Message}");
+}
+finally
+{
+    Log.Information($"Shut down {builder.Environment.ApplicationName} complete");
+    Log.CloseAndFlush();
+}

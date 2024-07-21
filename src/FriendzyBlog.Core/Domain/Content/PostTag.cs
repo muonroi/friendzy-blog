@@ -1,8 +1,7 @@
 ﻿namespace FriendzyBlog.Core.Domain.Content
 {
     [Table("PostTags")]
-    [PrimaryKey(nameof(PostId), nameof(TagId))]
-    public class PostTag
+    public class PostTag : EntityBase
     {
         public Guid PostId { set; get; }
         public Guid TagId { set; get; }

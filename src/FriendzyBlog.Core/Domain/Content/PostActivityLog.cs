@@ -1,22 +1,19 @@
 ﻿namespace FriendzyBlog.Core.Domain.Content
 {
     [Table("PostActivityLogs")]
-    public class PostActivityLog
+    public class PostActivityLog : EntityBase
     {
-        [Key]
-        public Guid Id { get; set; }
-
+        [Required(ErrorMessage = nameof(PostActivityLogEnum.POSTACTIVITYLOG02))]
         public Guid PostId { get; set; }
 
-        public PostStatus FromStatus { set; get; }
+        public PostStatusEnum FromStatus { set; get; }
 
-        public PostStatus ToStatus { set; get; }
+        public PostStatusEnum ToStatus { set; get; }
 
-        public DateTime DateCreated { get; set; }
-
-        [MaxLength(500)]
+        [MaxLength(500, ErrorMessage = nameof(PostActivityLogEnum.POSTACTIVITYLOG01))]
         public string? Note { set; get; }
 
+        [Required(ErrorMessage = nameof(PostActivityLogEnum.POSTACTIVITYLOG03))]
         public Guid UserId { get; set; }
     }
 }

@@ -1,6 +1,4 @@
-﻿using FriendzyBlog.Data;
-
-namespace FriendzyBlog.Api
+﻿namespace FriendzyBlog.Api
 {
     public static class MigrationManager
     {
@@ -8,9 +6,10 @@ namespace FriendzyBlog.Api
         {
             using (IServiceScope scope = app.Services.CreateScope())
             {
-                using FriendzyBlogContext context = scope.ServiceProvider.GetRequiredService<FriendzyBlogContext>();
+                FriendzyBlogContext context = scope.ServiceProvider.GetRequiredService<FriendzyBlogContext>();
                 context.Database.Migrate();
-                context.SeedAsync().Wait();
+
+                new InitialHostDbBuilder(context).Create();
             }
             return app;
         }

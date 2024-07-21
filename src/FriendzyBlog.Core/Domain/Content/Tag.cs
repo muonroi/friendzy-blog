@@ -1,13 +1,10 @@
 ﻿namespace FriendzyBlog.Core.Domain.Content
 {
     [Table("Tags")]
-    public class Tag
+    public class Tag : EntityBase
     {
-        [Key]
-        public Guid Id { get; set; }
-
-        [Required]
-        [MaxLength(100)]
+        [Required(ErrorMessage = nameof(TagEnum.TAG01))]
+        [MaxLength(100, ErrorMessage = nameof(TagEnum.TAG02))]
         public string Name { get; set; } = string.Empty;
     }
 }

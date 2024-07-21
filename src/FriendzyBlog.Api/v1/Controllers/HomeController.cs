@@ -1,4 +1,4 @@
-﻿namespace FriendzyBlog.Api.Controllers
+﻿namespace FriendzyBlog.Api.v1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

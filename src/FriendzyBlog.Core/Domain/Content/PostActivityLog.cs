@@ -1,7 +1,7 @@
 ﻿namespace FriendzyBlog.Core.Domain.Content
 {
     [Table("PostActivityLogs")]
-    public class PostActivityLog : EntityBase
+    public class PostActivityLog : MEntity
     {
         [Required(ErrorMessage = nameof(PostActivityLogEnum.POSTACTIVITYLOG02))]
         public Guid PostId { get; set; }

@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FriendzyBlog.Data", "src\Fr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FriendzyBlog.WebApp", "src\FriendzyBlog.WebApp\FriendzyBlog.WebApp.csproj", "{8B953AAA-CA95-4DED-A9FF-DF20DFD60205}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MuonroiBuildingBlock", "..\..\PersonalProject\MuonroiBuildingBlock\MuonroiBuildingBlock.csproj", "{683A5782-D0A0-4ABD-980C-8E309287A460}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MBuildingBlock", "..\..\PersonalProject\MuonroiBuildingBlock\MBuildingBlock.csproj", "{683A5782-D0A0-4ABD-980C-8E309287A460}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "resources", "resources", "{E7DA7C5A-B97D-40AF-ACAB-6A705F6D14B0}"
 	ProjectSection(SolutionItems) = preProject

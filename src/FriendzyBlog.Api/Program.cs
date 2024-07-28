@@ -3,9 +3,10 @@ Log.Logger = new LoggerConfiguration()
     .CreateBootstrapLogger();
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 {
-    builder.AddAppConfigurations();
+    _ = builder.AddAppConfigurations();
+    _ = builder.AddAutofacConfiguration();
+    _ = builder.Host.UseSerilog(MSerilogAction.Configure);
 }
-builder.Host.UseSerilog(SerilogAction.Configure);
 Log.Information($"Starting {builder.Environment.ApplicationName} API up");
 try
 {
@@ -14,26 +15,26 @@ try
     IServiceCollection services = builder.Services;
     {
         _ = services.AddApplication(assembly);
-        _ = services.AddInfrastructure(configuration);
+        _ = services.AddInfrastructure(configuration,
+            new MTokenInfo(),
+            new MPaginationConfigs());
         _ = services.AddDbContextConfigure<FriendzyBlogContext>(configuration);
-        _ = services.AddAutofacConfigure(configuration);
-        _ = services.AddScoped<DefaultLanguagesCreator>();
-        _ = services.AddScoped<HostRoleAndUserCreator>();
-        _ = services.AddScoped<InitialHostDbBuilder>();
+        _ = services.SwaggerConfig(builder.Environment.ApplicationName);
+        _ = services.AddPaginationConfigs(configuration, new MPaginationConfigs());
+        _ = services.AddScopeServices(typeof(FriendzyBlogContext).Assembly);
+        _ = services.AddAutoMapper(typeof(CustomMapper));
+        _ = services.AddValidateBearerToken<MTokenInfo>();
     }
 
     WebApplication app = builder.Build();
     {
-        _ = app.UseMiddleware<AuthContextMiddleware>();
-        _ = app.AddLocalization();
+        _ = app.AddLocalization(assembly);
         _ = app.UseRouting();
         _ = app.UseAuthentication();
         _ = app.UseAuthorization();
-        _ = app.UseMiddleware<GlobalExceptionMiddleware>();
         _ = app.ConfigureEndpoints();
         _ = app.MigrateDatabase();
-
-        app.Run();
+        _ = app.UseMiddleware<MExceptionMiddleware>();
         await app.RunAsync();
     }
 }

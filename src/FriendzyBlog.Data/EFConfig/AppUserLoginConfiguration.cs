@@ -1,8 +1,8 @@
 ﻿namespace FriendzyBlog.Data.EFConfig
 {
-    public class AppUserLoginConfiguration : IEntityTypeConfiguration<AppUserLogin>
+    public class MUserLoginConfiguration : IEntityTypeConfiguration<MUserLogin>
     {
-        public void Configure(EntityTypeBuilder<AppUserLogin> builder)
+        public void Configure(EntityTypeBuilder<MUserLogin> builder)
         {
             _ = builder.HasIndex(b => b.UserId).HasDatabaseName("IX_UserId").IsUnique();
         }

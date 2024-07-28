@@ -1,8 +1,8 @@
 ﻿namespace FriendzyBlog.Data.EFConfig
 {
-    public class AppUserRoleConfiguration : IEntityTypeConfiguration<AppUserRole>
+    public class MUserRoleConfiguration : IEntityTypeConfiguration<MUserRole>
     {
-        public void Configure(EntityTypeBuilder<AppUserRole> builder)
+        public void Configure(EntityTypeBuilder<MUserRole> builder)
         {
             _ = builder.Ignore(x => x.Id);
             _ = builder.HasKey(x => new { x.UserId, x.RoleId });

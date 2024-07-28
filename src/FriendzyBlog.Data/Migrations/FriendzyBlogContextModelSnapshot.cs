@@ -599,7 +599,7 @@ namespace FriendzyBlog.Data.Migrations
                     b.ToTable("Tags");
                 });
 
-            modelBuilder.Entity("MuonroiBuildingBlock.Entity.Identity.AppLanguage", b =>
+            modelBuilder.Entity("MBuildingBlock.External.Entity.Identity.MLanguage", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -678,10 +678,10 @@ namespace FriendzyBlog.Data.Migrations
                         .IsUnique()
                         .HasDatabaseName("IX_Name");
 
-                    b.ToTable("AppLanguages");
+                    b.ToTable("MLanguages");
                 });
 
-            modelBuilder.Entity("MuonroiBuildingBlock.Entity.Identity.AppPermission", b =>
+            modelBuilder.Entity("MBuildingBlock.External.Entity.Identity.MPermission", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -761,10 +761,10 @@ namespace FriendzyBlog.Data.Migrations
                         .IsUnique()
                         .HasDatabaseName("IX_Name");
 
-                    b.ToTable("AppPermissions");
+                    b.ToTable("MPermissions");
                 });
 
-            modelBuilder.Entity("MuonroiBuildingBlock.Entity.Identity.AppRole", b =>
+            modelBuilder.Entity("MBuildingBlock.External.Entity.Identity.MRole", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -850,10 +850,10 @@ namespace FriendzyBlog.Data.Migrations
                         .IsUnique()
                         .HasDatabaseName("IX_Name");
 
-                    b.ToTable("AppRoles");
+                    b.ToTable("MRoles");
                 });
 
-            modelBuilder.Entity("MuonroiBuildingBlock.Entity.Identity.AppUser", b =>
+            modelBuilder.Entity("MBuildingBlock.External.Entity.Identity.MUser", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -990,6 +990,9 @@ namespace FriendzyBlog.Data.Migrations
                     b.Property<string>("RecoveryCode")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Salf")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SecurityStamp")
                         .HasMaxLength(128)
                         .HasColumnType("nvarchar(128)");
@@ -1032,10 +1035,10 @@ namespace FriendzyBlog.Data.Migrations
                         .IsUnique()
                         .HasDatabaseName("IX_UserName");
 
-                    b.ToTable("AppUsers");
+                    b.ToTable("MUsers");
                 });
 
-            modelBuilder.Entity("MuonroiBuildingBlock.Entity.Identity.AppUserAccount", b =>
+            modelBuilder.Entity("MBuildingBlock.External.Entity.Identity.MUserAccount", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1113,10 +1116,10 @@ namespace FriendzyBlog.Data.Migrations
                         .IsUnique()
                         .HasDatabaseName("IX_UserName");
 
-                    b.ToTable("AppUserAccounts");
+                    b.ToTable("MUserAccounts");
                 });
 
-            modelBuilder.Entity("MuonroiBuildingBlock.Entity.Identity.AppUserLogin", b =>
+            modelBuilder.Entity("MBuildingBlock.External.Entity.Identity.MUserLogin", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1191,10 +1194,10 @@ namespace FriendzyBlog.Data.Migrations
                         .IsUnique()
                         .HasDatabaseName("IX_UserId");
 
-                    b.ToTable("AppUserLogins");
+                    b.ToTable("MUserLogins");
                 });
 
-            modelBuilder.Entity("MuonroiBuildingBlock.Entity.Identity.AppUserLoginAttempt", b =>
+            modelBuilder.Entity("MBuildingBlock.External.Entity.Identity.MUserLoginAttempt", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1284,16 +1287,16 @@ namespace FriendzyBlog.Data.Migrations
                     b.HasIndex("UserNameOrEmailAddress")
                         .HasDatabaseName("IX_UserNameOrEmailAddress");
 
-                    b.ToTable("AppUserLoginAttempts");
+                    b.ToTable("MUserLoginAttempts");
                 });
 
-            modelBuilder.Entity("MuonroiBuildingBlock.Entity.Identity.AppUserRole", b =>
+            modelBuilder.Entity("MBuildingBlock.External.Entity.Identity.MUserRole", b =>
                 {
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
+                    b.Property<long>("RoleId")
+                        .HasColumnType("bigint");
 
                     b.Property<double>("CreatedDateTS")
                         .HasColumnType("float")
@@ -1344,10 +1347,10 @@ namespace FriendzyBlog.Data.Migrations
 
                     b.HasKey("UserId", "RoleId");
 
-                    b.ToTable("AppUserRoles");
+                    b.ToTable("MUserRoles");
                 });
 
-            modelBuilder.Entity("MuonroiBuildingBlock.Entity.Identity.AppUserToken", b =>
+            modelBuilder.Entity("MBuildingBlock.External.Entity.Identity.MUserToken", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -1421,15 +1424,14 @@ namespace FriendzyBlog.Data.Migrations
 
                     b.Property<string>("Value")
                         .IsRequired()
-                        .HasMaxLength(512)
-                        .HasColumnType("nvarchar(512)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("LoginProvider")
                         .HasDatabaseName("IX_LoginProvider");
 
-                    b.ToTable("AppUserTokens");
+                    b.ToTable("MUserTokens");
                 });
 #pragma warning restore 612, 618
         }

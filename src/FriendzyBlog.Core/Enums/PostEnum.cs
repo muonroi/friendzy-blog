@@ -61,5 +61,15 @@
         /// The post seo description must be less than 160 characters.
         /// </summary>
         POST12,
+
+        /// <summary>
+        /// User is not found.
+        /// </summary>
+        POST13,
+
+        /// <summary>
+        /// Role is not found.
+        /// </summary>
+        POST14,
     }
 }

@@ -8,6 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Resources\ErrorMessages-en-US.json" />
+    <Content Remove="Resources\ErrorMessages-vi-VN.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ErrorMessages-en-US.json" />
+    <EmbeddedResource Include="Resources\ErrorMessages-vi-VN.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\FriendzyBlog.Core\FriendzyBlog.Core.csproj" />
     <ProjectReference Include="..\FriendzyBlog.Data\FriendzyBlog.Data.csproj" />
   </ItemGroup>
@@ -16,29 +26,20 @@
     <Folder Include="Localize\" />
     <Folder Include="Helper\" />
     <Folder Include="logs\" />
-    <Folder Include="v1\Applications\Command\" />
     <Folder Include="v1\Applications\Models\" />
     <Folder Include="v1\Applications\Queries\" />
-    <Folder Include="v1\Infrastructure\" />
     <Folder Include="v1\Services\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="8.0.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="9.0.0" />
+    <PackageReference Include="Serilog" Version="4.0.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Serilog" Version="4.0.0" />
-    <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
-    <PackageReference Include="Serilog.Enrichers.Environment" Version="3.0.1" />
-    <PackageReference Include="Serilog.Enrichers.Process" Version="3.0.0" />
-    <PackageReference Include="Serilog.Enrichers.Thread" Version="4.0.0" />
-    <PackageReference Include="Serilog.Exceptions" Version="8.4.0" />
-    <PackageReference Include="Serilog.Expressions" Version="5.0.0" />
-    <PackageReference Include="Serilog.Formatting.Elasticsearch" Version="10.0.0" />
-    <PackageReference Include="Serilog.Settings.Configuration" Version="8.0.2" />
-    <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
-    <PackageReference Include="Serilog.Sinks.Elasticsearch" Version="9.0.3" />
   </ItemGroup>
 
 </Project>

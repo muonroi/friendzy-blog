@@ -1,7 +1,7 @@
 ﻿namespace FriendzyBlog.Core.Domain.Content
 {
     [Table("Series")]
-    public class Series : EntityBase
+    public class Series : MEntity
     {
         [Required(ErrorMessage = nameof(SeriesEnum.SERIES01))]
         [MaxLength(250, ErrorMessage = nameof(SeriesEnum.SERIES02))]

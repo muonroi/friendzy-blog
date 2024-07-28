@@ -2,16 +2,16 @@
 {
     public class DefaultLanguagesCreator(FriendzyBlogContext context)
     {
-        public static List<AppLanguage> InitialLanguages => GetInitialLanguages();
+        public static List<MLanguage> InitialLanguages => GetInitialLanguages();
 
         private readonly FriendzyBlogContext _context = context;
 
-        private static List<AppLanguage> GetInitialLanguages()
+        private static List<MLanguage> GetInitialLanguages()
         {
             return
             [
-            new AppLanguage("en", "English", "famfamfam-flags us"),
-            new AppLanguage("vi", "Tiếng Việt", "famfamfam-flags vn"),
+            new MLanguage("en", "English", "famfamfam-flags us"),
+            new MLanguage("vi", "Tiếng Việt", "famfamfam-flags vn"),
             ];
         }
 
@@ -22,13 +22,13 @@
 
         private void CreateLanguages()
         {
-            foreach (AppLanguage language in InitialLanguages)
+            foreach (MLanguage language in InitialLanguages)
             {
                 AddLanguageIfNotExists(language);
             }
         }
 
-        private void AddLanguageIfNotExists(AppLanguage language)
+        private void AddLanguageIfNotExists(MLanguage language)
         {
             language.CreatedDateTS = DateTime.UtcNow.GetTimeStamp();
             if (_context.Languages.IgnoreQueryFilters().Any(l => l.Name == language.Name))

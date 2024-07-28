@@ -9,7 +9,7 @@ namespace FriendzyBlog.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             _ = migrationBuilder.CreateTable(
-                name: "AppLanguages",
+                name: "MLanguages",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -32,11 +32,11 @@ namespace FriendzyBlog.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    _ = table.PrimaryKey("PK_AppLanguages", x => x.Id);
+                    _ = table.PrimaryKey("PK_MLanguages", x => x.Id);
                 });
 
             _ = migrationBuilder.CreateTable(
-                name: "AppPermissions",
+                name: "MPermissions",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -60,11 +60,11 @@ namespace FriendzyBlog.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    _ = table.PrimaryKey("PK_AppPermissions", x => x.Id);
+                    _ = table.PrimaryKey("PK_MPermissions", x => x.Id);
                 });
 
             _ = migrationBuilder.CreateTable(
-                name: "AppRoles",
+                name: "MRoles",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -89,11 +89,11 @@ namespace FriendzyBlog.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    _ = table.PrimaryKey("PK_AppRoles", x => x.Id);
+                    _ = table.PrimaryKey("PK_MRoles", x => x.Id);
                 });
 
             _ = migrationBuilder.CreateTable(
-                name: "AppUserAccounts",
+                name: "MUserAccounts",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -116,11 +116,11 @@ namespace FriendzyBlog.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    _ = table.PrimaryKey("PK_AppUserAccounts", x => x.Id);
+                    _ = table.PrimaryKey("PK_MUserAccounts", x => x.Id);
                 });
 
             _ = migrationBuilder.CreateTable(
-                name: "AppUserLoginAttempts",
+                name: "MUserLoginAttempts",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -146,11 +146,11 @@ namespace FriendzyBlog.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    _ = table.PrimaryKey("PK_AppUserLoginAttempts", x => x.Id);
+                    _ = table.PrimaryKey("PK_MUserLoginAttempts", x => x.Id);
                 });
 
             _ = migrationBuilder.CreateTable(
-                name: "AppUserLogins",
+                name: "MUserLogins",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -172,11 +172,11 @@ namespace FriendzyBlog.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    _ = table.PrimaryKey("PK_AppUserLogins", x => x.Id);
+                    _ = table.PrimaryKey("PK_MUserLogins", x => x.Id);
                 });
 
             _ = migrationBuilder.CreateTable(
-                name: "AppUserRoles",
+                name: "MUserRoles",
                 columns: table => new
                 {
                     EntityId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -191,15 +191,15 @@ namespace FriendzyBlog.Data.Migrations
                     DeletedDateTS = table.Column<double>(type: "float", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     UserId = table.Column<long>(type: "bigint", nullable: false),
-                    RoleId = table.Column<int>(type: "int", nullable: false)
+                    RoleId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    _ = table.PrimaryKey("PK_AppUserRoles", x => new { x.UserId, x.RoleId });
+                    _ = table.PrimaryKey("PK_MUserRoles", x => new { x.UserId, x.RoleId });
                 });
 
             _ = migrationBuilder.CreateTable(
-                name: "AppUsers",
+                name: "MUsers",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -246,15 +246,16 @@ namespace FriendzyBlog.Data.Migrations
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     NormalizedEmailAddress = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true)
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    Salf = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    _ = table.PrimaryKey("PK_AppUsers", x => x.Id);
+                    _ = table.PrimaryKey("PK_MUsers", x => x.Id);
                 });
 
             _ = migrationBuilder.CreateTable(
-                name: "AppUserTokens",
+                name: "MUserTokens",
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
@@ -273,12 +274,12 @@ namespace FriendzyBlog.Data.Migrations
                     UserId = table.Column<long>(type: "bigint", nullable: false),
                     LoginProvider = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
-                    Value = table.Column<string>(type: "nvarchar(512)", maxLength: 512, nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ExpireDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    _ = table.PrimaryKey("PK_AppUserTokens", x => x.Id);
+                    _ = table.PrimaryKey("PK_MUserTokens", x => x.Id);
                 });
 
             _ = migrationBuilder.CreateTable(
@@ -480,59 +481,59 @@ namespace FriendzyBlog.Data.Migrations
 
             _ = migrationBuilder.CreateIndex(
                 name: "IX_Name",
-                table: "AppLanguages",
+                table: "MLanguages",
                 column: "Name",
                 unique: true);
 
             _ = migrationBuilder.CreateIndex(
                 name: "IX_Name",
-                table: "AppPermissions",
+                table: "MPermissions",
                 column: "Name",
                 unique: true);
 
             _ = migrationBuilder.CreateIndex(
                 name: "IX_Name",
-                table: "AppRoles",
+                table: "MRoles",
                 column: "Name",
                 unique: true);
 
             _ = migrationBuilder.CreateIndex(
                 name: "IX_UserName",
-                table: "AppUserAccounts",
+                table: "MUserAccounts",
                 column: "UserName",
                 unique: true);
 
             _ = migrationBuilder.CreateIndex(
                 name: "IX_UserNameOrEmailAddress",
-                table: "AppUserLoginAttempts",
+                table: "MUserLoginAttempts",
                 column: "UserNameOrEmailAddress");
 
             _ = migrationBuilder.CreateIndex(
                 name: "IX_UserId",
-                table: "AppUserLogins",
+                table: "MUserLogins",
                 column: "UserId",
                 unique: true);
 
             _ = migrationBuilder.CreateIndex(
                 name: "IX_UserName",
-                table: "AppUsers",
+                table: "MUsers",
                 column: "UserName",
                 unique: true);
 
             _ = migrationBuilder.CreateIndex(
                 name: "IX_LoginProvider",
-                table: "AppUserTokens",
+                table: "MUserTokens",
                 column: "LoginProvider");
 
             _ = migrationBuilder.CreateIndex(
                 name: "IX_PostId_UserId",
                 table: "PostActivityLogs",
-                columns: ["PostId", "UserId"]);
+                columns: new[] { "PostId", "UserId" });
 
             _ = migrationBuilder.CreateIndex(
                 name: "IX_Slug_ParentId",
                 table: "PostCategories",
-                columns: ["Slug", "ParentId"],
+                columns: new[] { "Slug", "ParentId" },
                 unique: true,
                 filter: "[ParentId] IS NOT NULL");
 
@@ -551,7 +552,7 @@ namespace FriendzyBlog.Data.Migrations
             _ = migrationBuilder.CreateIndex(
                 name: "IX_Slug_AuthorUserId",
                 table: "Series",
-                columns: ["Slug", "AuthorUserId"],
+                columns: new[] { "Slug", "AuthorUserId" },
                 unique: true);
         }
 
@@ -559,31 +560,31 @@ namespace FriendzyBlog.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             _ = migrationBuilder.DropTable(
-                name: "AppLanguages");
+                name: "MLanguages");
 
             _ = migrationBuilder.DropTable(
-                name: "AppPermissions");
+                name: "MPermissions");
 
             _ = migrationBuilder.DropTable(
-                name: "AppRoles");
+                name: "MRoles");
 
             _ = migrationBuilder.DropTable(
-                name: "AppUserAccounts");
+                name: "MUserAccounts");
 
             _ = migrationBuilder.DropTable(
-                name: "AppUserLoginAttempts");
+                name: "MUserLoginAttempts");
 
             _ = migrationBuilder.DropTable(
-                name: "AppUserLogins");
+                name: "MUserLogins");
 
             _ = migrationBuilder.DropTable(
-                name: "AppUserRoles");
+                name: "MUserRoles");
 
             _ = migrationBuilder.DropTable(
-                name: "AppUsers");
+                name: "MUsers");
 
             _ = migrationBuilder.DropTable(
-                name: "AppUserTokens");
+                name: "MUserTokens");
 
             _ = migrationBuilder.DropTable(
                 name: "PostActivityLogs");

@@ -1,7 +1,7 @@
 ﻿namespace FriendzyBlog.Core.Domain.Content
 {
     [Table("Posts")]
-    public class Post : EntityBase
+    public class Post : MEntity
     {
         [Required(ErrorMessage = nameof(PostEnum.POST01))]
         [MaxLength(250, ErrorMessage = nameof(PostEnum.POST02))]

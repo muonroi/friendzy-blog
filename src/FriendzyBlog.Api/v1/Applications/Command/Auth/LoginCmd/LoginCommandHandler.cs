@@ -1,6 +1,7 @@
 ﻿namespace FriendzyBlog.Api.v1.Applications.Command.Auth.LoginCmd
 {
-    public class LoginCommandHandler(IUserQueries userQueries, IRolesQueries rolesQueries, MTokenInfo jwtConfig)
+    public class LoginCommandHandler(IUserQueries userQueries, IRolesQueries rolesQueries, MTokenInfo jwtConfig,
+        ILoginTokenQueries loginTokenQueries)
         : IRequestHandler<LoginCommand, MResponse<LoginResponse>>
     {
         public async Task<MResponse<LoginResponse>> Handle(LoginCommand request, CancellationToken cancellationToken)
@@ -24,7 +25,7 @@
             IEnumerable<RoleDto> userRoles = await rolesQueries.GetByUserIdAsync(user.Id);
             MUserModel userModel = new(user.Id.ToString(), user.EntityId.ToString(), user.UserName, userRoles.Select(x => x.Name));
             string accessToken = MJwtTokenHelper.GenerateJwtToken(jwtConfig, userModel, null);
-            string refreshToken = MJwtTokenHelper.GenerateJwtToken(jwtConfig, userModel, DateTime.UtcNow.AddMinutes(SystemConst.RefreshTokenExpirationMinutes));
+            MUserToken? refreshToken = await loginTokenQueries.GetByProviderNameAsync(user.UserName);
 
             result.Result = new LoginResponse
             {
@@ -38,7 +39,7 @@
                 IsActive = user.IsActive,
                 CreationTime = user.CreationTime,
                 AccessToken = accessToken,
-                RefreshToken = refreshToken
+                RefreshToken = refreshToken?.Value ?? string.Empty
             };
 
             return result;

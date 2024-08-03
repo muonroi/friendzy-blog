@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FriendzyBlog.Data", "src\Fr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FriendzyBlog.WebApp", "src\FriendzyBlog.WebApp\FriendzyBlog.WebApp.csproj", "{8B953AAA-CA95-4DED-A9FF-DF20DFD60205}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MBuildingBlock", "..\..\PersonalProject\MuonroiBuildingBlock\MBuildingBlock.csproj", "{683A5782-D0A0-4ABD-980C-8E309287A460}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "resources", "resources", "{E7DA7C5A-B97D-40AF-ACAB-6A705F6D14B0}"
 	ProjectSection(SolutionItems) = preProject
 		.env = .env
@@ -21,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "resources", "resources", "{
 		kibana.yml = kibana.yml
 		setup.yml = setup.yml
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Muonroi.Common.BuildingBlock", "..\..\PersonalProject\MuonroiCommonBuildingBlock\Muonroi.Common.BuildingBlock.csproj", "{A6269619-A04A-489C-B8DB-F3B77A0A9606}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,10 +44,10 @@ Global
 		{8B953AAA-CA95-4DED-A9FF-DF20DFD60205}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B953AAA-CA95-4DED-A9FF-DF20DFD60205}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B953AAA-CA95-4DED-A9FF-DF20DFD60205}.Release|Any CPU.Build.0 = Release|Any CPU
-		{683A5782-D0A0-4ABD-980C-8E309287A460}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{683A5782-D0A0-4ABD-980C-8E309287A460}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{683A5782-D0A0-4ABD-980C-8E309287A460}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{683A5782-D0A0-4ABD-980C-8E309287A460}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6269619-A04A-489C-B8DB-F3B77A0A9606}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6269619-A04A-489C-B8DB-F3B77A0A9606}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6269619-A04A-489C-B8DB-F3B77A0A9606}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6269619-A04A-489C-B8DB-F3B77A0A9606}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

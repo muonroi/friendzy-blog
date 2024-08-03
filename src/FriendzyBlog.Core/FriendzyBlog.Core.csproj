@@ -7,12 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="13.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.7" />
+    <ProjectReference Include="..\..\..\..\PersonalProject\MuonroiCommonBuildingBlock\Muonroi.Common.BuildingBlock.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\PersonalProject\MuonroiBuildingBlock\MBuildingBlock.csproj" />
+    <Reference Include="Muonroi.BuildingBlock">
+      <HintPath>..\..\..\..\PersonalProject\MuonroiBuildingBlock\bin\Debug\net8.0\Muonroi.BuildingBlock.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

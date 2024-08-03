@@ -15,12 +15,9 @@ try
     IServiceCollection services = builder.Services;
     {
         _ = services.AddApplication(assembly);
-        _ = services.AddInfrastructure(configuration,
-            new MTokenInfo(),
-            new MPaginationConfigs());
+        _ = services.AddInfrastructure(configuration);
         _ = services.AddDbContextConfigure<FriendzyBlogContext>(configuration);
         _ = services.SwaggerConfig(builder.Environment.ApplicationName);
-        _ = services.AddPaginationConfigs(configuration, new MPaginationConfigs());
         _ = services.AddScopeServices(typeof(FriendzyBlogContext).Assembly);
         _ = services.AddAutoMapper(typeof(CustomMapper));
         _ = services.AddValidateBearerToken<MTokenInfo>();
